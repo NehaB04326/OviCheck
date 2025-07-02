@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PCOS Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+  <div class="container prediction-container">
+    <h2>Upload Your Ultrasound</h2>
+    
+    <!-- Custom File Upload -->
+    <label for="imageInput" class="custom-file-upload">📂 Choose Image</label>
+    <input type="file" id="imageInput" accept="image/*" style="display:none" />
+    
+    <button onclick="predictImage()">🔍 Predict</button>
+
+    <img id="preview" style="display:none; margin-top:20px; max-width:300px; border-radius:10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);" />
+
+    <div id="result" class="result-box" style="display:none; margin-top:20px;"></div>
+  </div>
+
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('preview');
+    const resultBox = document.getElementById('result');
+    let selectedFile = null;
+
+    imageInput.addEventListener('change', () => {
+      const f = imageInput.files[0];
+      if (!f) return;
+      selectedFile = f;
+      const r = new FileReader();
+      r.onload = e => {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        resultBox.style.display = 'none';
+        resultBox.innerHTML = '';
+      };
+      r.readAsDataURL(f);
+    });
+
+    async function predictImage() {
+      if (!selectedFile) {
+        alert('Please select an image.');
+        return;
+      }
+      const form = new FormData();
+      form.append('image', selectedFile);
+
+      resultBox.style.display = 'block';
+      resultBox.innerHTML = 'Predicting...';
+
+      try {
+        const res = await fetch('/predict', {
+          method: 'POST',
+          body: form
+        });
+        const data = await res.json();
+
+        const color = data.result.includes('Detected') ? '#ffcccc' : '#ccffcc';
+
+        resultBox.style.backgroundColor = color;
+        resultBox.style.padding = '15px';
+        resultBox.style.borderRadius = '10px';
+        resultBox.style.fontWeight = 'bold';
+
+        resultBox.innerHTML = `
+          <h3>${data.result}</h3>
+          <p>Confidence: ${data.confidence.toFixed(4)}</p>
+          <p>${data.tips}</p>
+        `;
+      } catch (err) {
+        resultBox.innerHTML = 'Error during prediction. Please try again.';
+      }
+    }
+  </script>
+</body>
+</html>

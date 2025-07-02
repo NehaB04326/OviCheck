@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PCOS Awareness</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="home-page">
+  <div class="quotes-overlay">
+    <p class="quote">“Empower yourself with knowledge about PCOS.”</p>
+    <p class="quote">“Early detection can change your life.”</p>
+    <p class="quote">“You are not alone in this journey.”</p>
+  </div>
+
+  <div class="container">
+    <h1>PCOS Awareness</h1>
+    <p class="lead">
+      Polycystic Ovary Syndrome (PCOS) affects 1 in 5 women in India. Early detection can help manage symptoms effectively.
+    </p>
+    <p>
+      Symptoms include irregular periods, acne, weight gain, and difficulty conceiving.
+      But with the right support, PCOS can be managed!
+    </p>
+    <a href="{{ url_for('predict_page') }}" class="btn">🩺 Check with Ultrasound</a>
+  </div>
+</body>
+</html>

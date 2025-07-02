@@ -1,0 +1,146 @@
+/* Base */
+body {
+  background-color: #ffe6f0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Container */
+.container {
+  max-width: 700px;
+  margin: 120px auto 40px auto;
+  text-align: center;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Quotes Overlay with animation */
+.quotes-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  color: #ffb6c1;
+  font-style: italic;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.08;
+  font-size: 28px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  line-height: 2;
+}
+
+.quote {
+  animation: floatFade 12s infinite ease-in-out;
+}
+
+.quote:nth-child(2) {
+  animation-delay: 4s;
+}
+
+.quote:nth-child(3) {
+  animation-delay: 8s;
+}
+
+@keyframes floatFade {
+  0%, 100% {
+    opacity: 0.1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(-20px);
+  }
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #ff66a3;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #e05590;
+}
+
+/* Back link */
+.back-link {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  color: #ff66a3;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Prediction page button */
+.prediction-container button {
+  margin-top: 15px;
+  padding: 12px 25px;
+  background-color: #ff66a3;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.prediction-container button:hover {
+  background-color: #e05590;
+}
+
+/* Result box */
+.result-box {
+  font-size: 16px;
+  color: #222;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Custom File Upload Button */
+.custom-file-upload {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  cursor: pointer;
+  border-radius: 30px;
+  background-color: #ff66a3;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  border: none;
+}
+
+.custom-file-upload:hover {
+  background-color: #e05590;
+}
