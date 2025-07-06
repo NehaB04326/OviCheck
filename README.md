@@ -1,4 +1,5 @@
  OviCheck – PCOS Detection from Ultrasound Images
+ 
 OviCheck is a deep learning-powered web application designed to assist in the early detection of Polycystic Ovary Syndrome (PCOS) by analyzing ultrasound images of ovaries. It eliminates the need for manual parameter entry and focuses entirely on medical image classification using a trained CNN model.
 
 🌟 Key Features
