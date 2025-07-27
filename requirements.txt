@@ -1,4 +1,4 @@
-Flask==3.1.0
-tensorflow
-numpy==1.24.4
-Pillow==10.3.0
+Flask==3.1.0  # or Flask==2.2.2 if you choose to downgrade
+tensorflow==2.12.0  # or another compatible version
+numpy
+Pillow
