@@ -1,4 +1,4 @@
-Flask==3.1.0  # or Flask==2.2.2 if you choose to downgrade
-tensorflow==2.11.0
-numpy
-Pillow
+Flask==3.1.0  # or another compatible version
+torch==2.0.0  # specify the version of PyTorch you want to use
+torchvision==0.15.0  # optional, if you need torchvision for image processing
+numpy  # if you are using NumPy for any numerical operations
