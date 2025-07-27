@@ -1,6 +1,6 @@
 Flask==2.2.2
 numpy==1.23.5
-Pillow==9.4.0
-torch==2.5.1
-torchvision==0.22.1
-
+torch==2.5.0  # or the latest compatible version
+torchvision==0.22.0  # or the latest compatible version
+Pillow==9.0.1  # For image processing
+setuptools  # Ensure setuptools is included
