@@ -1,4 +1,6 @@
-Flask==2.2.2
-torch==2.5.0  # or the latest compatible version
-torchvision==0.22.0  # or the latest compatible version
-Pillow==9.0.1  # For image processing
+Flask
+tensorflow==2.13.0
+numpy
+Pillow>=10.0.0
+torch==2.5.0
+torchvision==0.22.0
