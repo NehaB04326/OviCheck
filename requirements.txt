@@ -1,4 +1,4 @@
 Flask==2.2.2
 torch==2.5.0  # or the version you are using
-torchvision==0.14.0  # if you are using torchvision
+torchvision==0.21.0  # Use a compatible version
 Pillow==9.0.1  # For image processing
