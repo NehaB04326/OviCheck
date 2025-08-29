@@ -32,11 +32,11 @@ def predict():
     confidence = float(prediction[0][0])
 
     if confidence < 0.5:
-        result = "⚠️ PCOS Detected"
+        result = "PCOS Detected"
         conf_display = 1.0 - confidence
         tips = "Eat a balanced diet, exercise regularly, reduce stress, and consult a gynecologist."
     else:
-        result = "✅ Normal"
+        result = "Normal"
         conf_display = confidence
         tips = "Keep up a healthy lifestyle and monitor your wellness."
 
