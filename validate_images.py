@@ -12,5 +12,5 @@ def validate_images(folder_path):
                 print(f"Corrupted image found and removed: {file_path}")
                 os.remove(file_path)
 
-# Change this path to your test folder path
+
 validate_images(r"C:\Users\NEHA\Downloads\pcos\data\test")
