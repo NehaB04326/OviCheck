@@ -5,7 +5,6 @@ import tkinter as tk
 from tkinter import filedialog, Label, Button, messagebox, Frame, Text, Scrollbar
 import os
 
-# === MODEL SETUP ===
 MODEL_PATH = "pcos_ultrasound_model.h5"
 IMG_HEIGHT, IMG_WIDTH = 224, 224
 
@@ -13,7 +12,6 @@ if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model not found at: {MODEL_PATH}")
 model = tf.keras.models.load_model(MODEL_PATH)
 
-# === IMAGE PREPROCESSING ===
 def preprocess_image(image_path):
     img = Image.open(image_path).convert("RGB")
     img = img.resize((IMG_WIDTH, IMG_HEIGHT))
@@ -21,7 +19,6 @@ def preprocess_image(image_path):
     img_array = np.expand_dims(img_array, axis=0)
     return img_array
 
-# === GUI APPLICATION ===
 class PCOSApp:
     def __init__(self, root):
         self.root = root
@@ -29,39 +26,33 @@ class PCOSApp:
         self.root.geometry("720x880")
         self.root.configure(bg="#f0f8ff")
 
-        # === Introduction Text ===
         intro = (
-            "🔍 Welcome to the PCOS Predictor!\n\n"
+            "Welcome to the PCOS Predictor!\n\n"
             "This AI-powered app analyzes your ultrasound image to detect signs of "
-            "Polycystic Ovary Syndrome (PCOS). It gives not just predictions but also helpful "
-            "tips if PCOS is detected. Upload your image and let the AI do its magic!"
+            "Polycystic Ovary Syndrome (PCOS). Upload your image and get predictions."
         )
         Label(root, text=intro, wraplength=680, bg="#f0f8ff",
               font=("Arial", 11), justify="left").pack(padx=20, pady=(10, 5))
 
-        # === Condensed PCOS Info ===
         info = (
-            "💡 PCOS is a hormonal condition that affects women. Symptoms may include irregular periods, "
+            "PCOS is a hormonal condition that affects women. Symptoms may include irregular periods, "
             "acne, weight gain, or cysts on the ovaries. It can impact fertility but is manageable "
             "through diet, exercise, stress control, and medical care."
         )
         Label(root, text=info, wraplength=680, bg="#e0f0ff", justify="left",
               font=("Arial", 10), relief="solid", padx=10, pady=10).pack(padx=20, pady=10)
 
-        # === Image Preview ===
         self.image_path = None
         self.image_label = Label(self.root, bg="#f0f8ff")
         self.image_label.pack(pady=10)
 
-        # === Buttons ===
         btn_frame = Frame(root, bg="#f0f8ff")
         btn_frame.pack(pady=5)
-        Button(btn_frame, text="📂 Select Image", command=self.select_image,
+        Button(btn_frame, text="Select Image", command=self.select_image,
                bg="#4CAF50", fg="white", font=("Arial", 11, "bold"), padx=10).pack(side="left", padx=10)
-        Button(btn_frame, text="🔍 Predict", command=self.predict,
+        Button(btn_frame, text="Predict", command=self.predict,
                bg="#2196F3", fg="white", font=("Arial", 11, "bold"), padx=20).pack(side="left", padx=10)
 
-        # === Prediction Output with Scrollbar ===
         result_frame = Frame(self.root)
         result_frame.pack(padx=20, pady=15, fill="both", expand=True)
 
@@ -99,16 +90,16 @@ class PCOSApp:
             confidence = float(prediction[0][0])
 
             if confidence < 0.5:
-                result = "⚠️ PCOS Detected"
+                result = "PCOS Detected"
                 conf_display = 1.0 - confidence
                 motivation = (
-                    "\n\nTips:\n✔ Eat a balanced diet\n✔ Exercise daily\n✔ Reduce stress\n"
-                    "✔ Visit your doctor\n\n💪 You can manage PCOS. You're not alone!"
+                    "\n\nTips:\n- Eat a balanced diet\n- Exercise daily\n- Reduce stress\n"
+                    "- Visit your doctor\n\nYou can manage PCOS. You're not alone."
                 )
             else:
-                result = "✅ Normal"
+                result = "Normal"
                 conf_display = confidence
-                motivation = "\n\n🎉 Your scan looks normal! Stay healthy and active. 💚"
+                motivation = "\n\nYour scan looks normal! Stay healthy and active."
 
             output = f"{result}\nConfidence: {conf_display:.4f}{motivation}"
             self.result_box.configure(state="normal")
@@ -119,8 +110,7 @@ class PCOSApp:
         except Exception as e:
             messagebox.showerror("Prediction Error", str(e))
 
-# === RUN ===
 if __name__ == "__main__":
     root = tk.Tk()
     app = PCOSApp(root)
-    root.mainloop() 
+    root.mainloop()
